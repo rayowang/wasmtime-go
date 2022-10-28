@@ -36,7 +36,7 @@ jobs:
         go-version: ${{ matrix.go }}
     - run: go vet
     - run: |
-        export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:build/linux-x86_64/libwasmtime.so:build/macos-x86_64/libwasmtime.dylib
+      export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:build/linux-x86_64/:build/macos-x86_64/:build/windows-x86_64/
         go test
     - run: go test -tags debug
     - run: go test -tags debug
