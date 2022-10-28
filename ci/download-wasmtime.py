@@ -53,13 +53,11 @@ for i, arr in enumerate(urls):
     shutil.copytree(src + '/lib', 'build/' + dirname, dirs_exist_ok=True)
     shutil.rmtree(src)
 
-for dylib in glob.glob("build/**/*.dll"):
+for dylib in glob.glob("build/**/*.a"):
     os.remove(dylib)
-for dylib in glob.glob("build/**/*.dll.a"):
+for dylib in glob.glob("build/**/*.a"):
     os.remove(dylib)
-for dylib in glob.glob("build/**/*.dylib"):
-    os.remove(dylib)
-for dylib in glob.glob("build/**/*.so"):
+for dylib in glob.glob("build/**/*.a"):
     os.remove(dylib)
 
 for subdir, dirs, files in os.walk("build"):
