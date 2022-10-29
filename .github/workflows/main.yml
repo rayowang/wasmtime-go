@@ -35,16 +35,15 @@ jobs:
       with:
         go-version: ${{ matrix.go }}
     - run: go vet
-      if: matrix.os != 'windows-latest'
+    - if: matrix.os != 'windows-latest'
         export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:build/linux-x86_64/:build/macos-x86_64/
-      if: matrix.os == 'windows-latest'
-        export PATH=$PATH:build/windows-x86_64/
-    - run: |
-        go test
-    - run: |
-        go test -tags debug
-    - run: |
-        go test -tags debug
+      run: go test
+    - if: matrix.os != 'windows-latest'
+        export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:build/linux-x86_64/:build/macos-x86_64/
+      run: go test -tags debug
+    - if: matrix.os != 'windows-latest'
+        export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:build/linux-x86_64/:build/macos-x86_64/
+      run: go test -tags debug
       env:
         GODEBUG: cgocheck=2
         GOGC: 1
