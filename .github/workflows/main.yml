@@ -38,21 +38,24 @@ jobs:
     - run: |
         export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:build/linux-x86_64/:build/macos-x86_64/
         go test
-      if: matrix.os != 'windows-latest'
+      name: Run go test
+      if: matrix.os == 'ubuntu-latest'
     - run: |
         export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:build/linux-x86_64/:build/macos-x86_64/
         go test -tags debug
-      if: matrix.os != 'windows-latest'
+      name: Run go test -tags debug
+      if: matrix.os == 'ubuntu-latest'
     - run: |
         export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:build/linux-x86_64/:build/macos-x86_64/
         go test -tags debug
-      if: matrix.os != 'windows-latest'
+      name: Run go test -tags debug
+      if: matrix.os == 'ubuntu-latest'
     - run: go test
-      if: matrix.os == 'windows-latest'
+      if: matrix.os != 'ubuntu-latest'
     - run: go test -tags debug
-      if: matrix.os == 'windows-latest'
+      if: matrix.os != 'ubuntu-latest'
     - run: go test -tags debug
-      if: matrix.os == 'windows-latest'
+      if: matrix.os != 'ubuntu-latest'
       env:
         GODEBUG: cgocheck=2
         GOGC: 1
