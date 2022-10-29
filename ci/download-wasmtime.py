@@ -53,6 +53,11 @@ for i, arr in enumerate(urls):
     shutil.copytree(src + '/lib', 'build/' + dirname, dirs_exist_ok=True)
     shutil.rmtree(src)
 
+for dylib in glob.glob("build/**/*.dll"):
+    os.remove(dylib)
+for dylib in glob.glob("build/**/*.dll.a"):
+    os.remove(dylib)
+
 for subdir, dirs, files in os.walk("build"):
     dir_name = os.path.basename(os.path.normpath(subdir))
     file_path = os.path.join(subdir, "empty.go")
