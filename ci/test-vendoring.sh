@@ -37,7 +37,6 @@ E0F
 go mod vendor
 
 # Then execute the test
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:build/linux-x86_64/:build/macos-x86_64/
 go test .
 
 echo "Success"
